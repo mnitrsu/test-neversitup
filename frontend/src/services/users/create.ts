@@ -1,8 +1,8 @@
 import axios from "@/services/axios";
 
-import { IUsersCreate } from "@/types/IUsersCreate";
+import { IRegisterLoginForm } from "@/types/IRegisterLoginForm";
 
-export const postUsersCreate = async (requestData: IUsersCreate) => {
+export const postUsersCreate = async (requestData: IRegisterLoginForm) => {
   const res = await axios.post(`/users`, requestData);
   return res?.data;
 };

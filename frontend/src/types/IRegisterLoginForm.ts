@@ -1,4 +1,4 @@
-export interface IUsersCreate {
+export interface IRegisterLoginForm {
   username: string;
   password: string;
 }
