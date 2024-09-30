@@ -17,7 +17,9 @@ const ModalCompleteTask = ({ openCompleteTask, setOpenCompleteTask }: IModalComp
   }, [fetch]);
 
   return (
-    <div className={`w-full h-full bg-white absolute top-0 ${openCompleteTask ? "left-0" : "left-full"}`}>
+    <div
+      className={`w-full h-full bg-white absolute top-0 overflow-y-scroll ${openCompleteTask ? "left-0" : "left-full"}`}
+    >
       <Header
         title="DONE TASKS"
         icon={<IconArrowLeft color="gray" />}

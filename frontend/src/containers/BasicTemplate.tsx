@@ -8,7 +8,7 @@ const BasicTemplate = ({ children }: PropsWithChildren) => {
 
   return (
     <div className="relative overflow-hidden h-full">
-      <div className="h-full">
+      <div className="h-full overflow-y-scroll">
         <Header
           title="TODO"
           icon={<IconMenu color="red" stroke={3} />}
