@@ -3,8 +3,14 @@ import Task from "@/components/Task";
 import BasicTemplate from "@/containers/BasicTemplate";
 import { useEffect, useState } from "react";
 import { todoStore } from "@/store/todoStore";
+import { getTodos } from "@/services/todo";
+import { ITodo } from "@/types/ITodo";
 
-const TodoPage = () => {
+interface ITodoPage {
+  _SSRTODO: ITodo[];
+}
+
+const TodoPage = ({ _SSRTODO }: ITodoPage) => {
   const [stateEditing, setStateEditing] = useState<boolean>(false);
 
   const { todo, fetch } = todoStore();
@@ -16,7 +22,7 @@ const TodoPage = () => {
   return (
     <BasicTemplate>
       <div className="flex flex-col gap-2">
-        {todo.map(({ id, title, completed }) => {
+        {(_SSRTODO || todo).map(({ id, title, completed }) => {
           return <Task {...{ id, title, completed, stateEditing }} key={id} />;
         })}
       </div>
@@ -26,3 +32,10 @@ const TodoPage = () => {
 };
 
 export default TodoPage;
+
+export async function getServerSideProps() {
+  const response = await getTodos();
+  return {
+    props: { _SSRTODO: response },
+  };
+}
