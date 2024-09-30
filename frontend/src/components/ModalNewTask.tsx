@@ -51,8 +51,15 @@ const ModalNewTask = ({ setOpenNewTask }: IModalNewTask) => {
             <textarea
               className="border p-2 rounded-md mt-2"
               placeholder="Input something? ->"
-              {...register("title", { required: true })}
+              {...register("title", {
+                required: true,
+                minLength: {
+                  value: 3,
+                  message: "input > 2",
+                },
+              })}
             />
+            {errors.title && <span className="text-red-500 text-sm">{errors.title.message}</span>}
             <div className="flex-1"></div>
             <div className="flex justify-evenly">
               <button type="submit" className="bg-sky-500 w-min text-white px-8 py-2 rounded-3xl">
