@@ -3,9 +3,13 @@ import { IRegisterLoginForm } from "@/types/IRegisterLoginForm";
 import { postAuthLogin } from "@/services/auth/login";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import { encode } from "@/utils";
 
 const LoginPage = () => {
   const router = useRouter();
+  const { query } = router;
+  const { redirect } = query;
 
   const {
     register,
@@ -16,8 +20,17 @@ const LoginPage = () => {
   const onSubmit: SubmitHandler<IRegisterLoginForm> = (data) => {
     postAuthLogin(data)
       .then((res) => {
-        const { statusCode, message } = res;
-        // TODO -- ติด CORS
+        const { username, access_token, statusCode, message } = res;
+        if (username && access_token) {
+          Cookies.set("login-information", encode(JSON.stringify(res)));
+          if (redirect && redirect !== "[redirect]") {
+            router.push(redirect.toString());
+          } else {
+            router.push("/todo");
+          }
+        } else {
+          alert(`${statusCode}: ${message}`);
+        }
       })
       .catch((e) => {
         alert(JSON.stringify(e));
