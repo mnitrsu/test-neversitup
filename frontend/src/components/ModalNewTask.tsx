@@ -54,9 +54,14 @@ const ModalNewTask = ({ setOpenNewTask }: IModalNewTask) => {
               {...register("title", { required: true })}
             />
             <div className="flex-1"></div>
-            <button type="submit" className="bg-sky-500 w-min text-white px-8 py-2 rounded-3xl">
-              Add
-            </button>
+            <div className="flex justify-evenly">
+              <button type="submit" className="bg-sky-500 w-min text-white px-8 py-2 rounded-3xl">
+                Add
+              </button>
+              <button className="w-min text-black px-8 py-2 rounded-3xl" onClick={() => setOpenNewTask(false)}>
+                Cancel
+              </button>
+            </div>
           </form>
         </div>
       </div>
