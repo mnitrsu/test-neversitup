@@ -13,7 +13,7 @@ const Header = ({ title, icon, position, onClick }: IHeader) => {
         <p className="m-2 text-xl">{title}</p>
       </div>
       <div className={`absolute top-1/2 -translate-y-1/2 ${position === "left" ? "left-3" : "right-3"}`}>
-        <div onClick={onClick}>{icon}</div>
+        <div className="cursor-pointer" onClick={onClick}>{icon}</div>
       </div>
     </div>
   );
