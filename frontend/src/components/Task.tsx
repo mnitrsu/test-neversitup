@@ -1,8 +1,8 @@
 import { ITodo } from "@/types/ITodo";
 import { IconCheck, IconCircleFilled, IconSquare, IconSquareCheck } from "@tabler/icons-react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { todoStore } from "@/store/todoStore";
-import { useClickOutside } from "@/hooks/useClickOutside";
+import ModalTask from "@/components/ModalTask";
 
 const RGBcolor = () => {
   const R = Math.floor(Math.random() * 256);
@@ -15,15 +15,11 @@ interface ITask extends ITodo {
   stateEditing?: boolean;
 }
 
-const Task = ({ id, title, completed, stateEditing }: ITask) => {
+const Task = ({ id, title = "A", completed, stateEditing }: ITask) => {
   const [randomBGColor, setRandomBGColor] = useState<string>(RGBcolor());
   const [openModal, setOpenModal] = useState<string>("");
 
-  const ref = useRef(null);
-
   const { pendingComplete, setPendingComplete } = todoStore();
-
-  useClickOutside(ref, () => setOpenModal(""));
 
   const FirstCharacter = () => {
     return (
@@ -53,34 +49,7 @@ const Task = ({ id, title, completed, stateEditing }: ITask) => {
 
   return (
     <>
-      {openModal === id && (
-        <div className="absolute bg-black bg-opacity-50 top-0 left-0 w-full h-full z-10">
-          <div
-            className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20 bg-white w-11/12 h-1/2 rounded-lg drop-shadow-lg"
-            ref={ref}
-          >
-            <div className="flex flex-col h-full">
-              <div className="bg-gray-100 flex flex-col items-center justify-center gap-3 py-4">
-                {FirstCharacter()}
-                <p className="text-bold">XXXXX</p>
-                <p className="text-xs">
-                  <span className="font-bold">XX XXX</span> <span className="text-gray-400">XX:XX</span>
-                </p>
-              </div>
-              <div className="flex flex-col h-full gap-3 py-4">
-                <p className="font-bold text-sm text-center">Description</p>
-                <p className="flex-1 px-4">{title}</p>
-                <button
-                  className="bg-sky-500 w-min self-center text-white px-8 py-2 rounded-3xl"
-                  onClick={() => setOpenModal("")}
-                >
-                  Done
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {openModal === id && <ModalTask {...{ id, title, setOpenModal }} />}
       <div
         className="flex justify-between items-center gap-2 p-3 mx-3 bg-gray-100 rounded-md relative h-[60px]"
         onClick={() => handleModal(id)}
