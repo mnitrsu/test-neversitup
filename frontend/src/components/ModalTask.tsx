@@ -62,10 +62,10 @@ const ModalTask = ({ id, title, setOpenModal }: IModalTask) => {
             <p className="font-bold text-sm text-center">Description</p>
             <p className="flex-1 px-4">{title}</p>
             <button
-              className="bg-sky-500 w-min self-center text-white px-8 py-2 rounded-3xl"
+              className="bg-sky-500 self-center text-white px-8 py-2 rounded-3xl"
               onClick={() => setOpenModal("")}
             >
-              Done
+              Done (Close)
             </button>
             <button className="w-min self-center text-white px-8 py-2 rounded-3xl" onClick={() => handleDelete()}>
               <IconTrash color="red" />
