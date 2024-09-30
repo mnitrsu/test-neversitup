@@ -36,6 +36,6 @@ export default TodoPage;
 export async function getServerSideProps() {
   const response = await getTodos();
   return {
-    props: { _SSRTODO: response },
+    props: { _SSRTODO: response.filter((item: ITodo) => item.completed === false) },
   };
 }
