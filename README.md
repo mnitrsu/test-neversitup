@@ -6,4 +6,4 @@ backend:
 https://github.com/mnitrsu/test-neversitup/blob/main/backend/README.md#test-neversitup-backend
 
 frontend:
-$${\color{red}didn't \space complete \space yet}$$
+https://github.com/mnitrsu/test-neversitup/blob/main/frontend/README.md#test-neversitup-frontend
