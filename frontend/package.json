@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tabler/icons-react": "^3.19.0",
     "axios": "^1.7.7",
     "js-base64": "^3.7.7",
     "js-cookie": "^3.0.5",

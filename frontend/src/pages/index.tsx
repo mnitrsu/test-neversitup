@@ -12,6 +12,10 @@ const IndexPage = () => {
         <Link href="/login">
           <p>login</p>
         </Link>
+        <p>|</p>
+        <Link href="/todo">
+          <p>todo</p>
+        </Link>
       </div>
     </div>
   );

@@ -60,7 +60,7 @@ const LoginPage = () => {
           {errors.password && <span className="text-red-500 text-sm">password is required</span>}
         </div>
         <button type="submit" className="border p-2 rounded-md mt-4">
-          login
+          login <span className="text-red-500 text-xs">* ติด CORS</span>
         </button>
         <Link href="/register">
           <p className="text-center underline">register</p>
